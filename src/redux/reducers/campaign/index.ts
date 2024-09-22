@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getCampaigns, addCampaign, updateCampaign, removeCampaign } from '@/redux/asyncThunks/campaign';
+import { Campaign } from '@/types';
 
 export interface CampaignState {
-  campaigns: any[];
+  campaigns: Campaign[];
   loading: boolean;
   error: string | null;
   meta: {
