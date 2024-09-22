@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface Campaign {
     id: number;
     name: string;
@@ -18,3 +20,10 @@ export interface Campaign {
     meta: CampaignMeta;
   }
   
+  export interface Props {
+    children?: ReactNode;
+  }
+  
+  export interface State {
+    hasError: boolean;
+  }
