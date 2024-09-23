@@ -3,9 +3,9 @@ import { campaignReducer } from './reducers/campaign';
 
 export const store = configureStore({
   reducer: {
-    assetData: campaignReducer,
+    campaignData: campaignReducer,
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
