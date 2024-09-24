@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs';
 import { ReactNode } from 'react';
 
 export interface Campaign {
@@ -5,7 +6,7 @@ export interface Campaign {
     name: string;
     dataInicio: string;
     dataFim: string;
-    status: 'ativa' | 'expirada';
+    status: 'ativa' | 'expirada' | string;
   }
   
   export interface CampaignMeta {
@@ -27,3 +28,12 @@ export interface Campaign {
   export interface State {
     hasError: boolean;
   }
+
+
+  export interface INewCampaign {
+    name: string;
+    status: string;
+    dataInicio: Dayjs | null;
+    dataFim: Dayjs | null;
+  }
+  

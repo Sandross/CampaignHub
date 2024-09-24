@@ -95,16 +95,27 @@ const mock = new MockAdapter(apiRequest, { delayResponse: 500 });
 mock.onGet('/campaigns').reply((config) => {
     const currentPage = Number(new URLSearchParams(config.params).get('page')) || 1;
     const pageSize = 5;
-
-    const paginatedData = campaigns.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    const name = new URLSearchParams(config.params).get('name')?.toLowerCase();
+  
+    let filteredCampaigns = campaigns;
+  
+    if (name) {
+      filteredCampaigns = campaigns.filter((campaign) =>
+        campaign.name.toLowerCase().includes(name)
+      );
+    }
+  
+    const paginatedData = filteredCampaigns.slice((currentPage - 1) * pageSize, currentPage * pageSize);
     meta = {
-        totalPages: Math.ceil(campaigns.length / pageSize),
-        currentPage,
-        pageSize,
-        totalItems: campaigns.length,
+      totalPages: Math.ceil(filteredCampaigns.length / pageSize),
+      currentPage,
+      pageSize,
+      totalItems: filteredCampaigns.length,
     };
+  
     return [200, { campaigns: paginatedData, meta }];
-});
+  });
+  
 
 mock.onPost('/campaigns').reply((config) => {
     const newCampaign = JSON.parse(config.data);

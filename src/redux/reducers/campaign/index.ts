@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getCampaigns, addCampaign, updateCampaign, removeCampaign } from '@/redux/asyncThunks/campaign';
+import { getCampaigns, addCampaign, updateCampaign, removeCampaign, getFilteredCampaigns } from '@/redux/asyncThunks/campaign';
 import { Campaign } from '@/types';
 
 export interface CampaignState {
@@ -31,12 +31,31 @@ export const campaignSlice = createSlice({
       .addCase(getCampaigns.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
+.addCase(getCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
+    state.loading = false;
+    const newCampaigns = action.payload.campaigns.filter(
+      (apiCampaign: Campaign) => !state.campaigns.some((stateCampaign) => stateCampaign.id === apiCampaign.id)
+    );
+    state.campaigns = [...state.campaigns, ...newCampaigns];
+    state.meta = action.payload.meta;
+  })
+  
+
+      .addCase(getCampaigns.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(getFilteredCampaigns.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getFilteredCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.campaigns = action.payload.campaigns;
         state.meta = action.payload.meta;
       })
-      .addCase(getCampaigns.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getFilteredCampaigns.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       });
@@ -60,5 +79,4 @@ export const campaignSlice = createSlice({
       });
   },
 });
-
 export const campaignReducer = campaignSlice.reducer;

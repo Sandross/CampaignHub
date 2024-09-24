@@ -14,9 +14,9 @@ export const getCampaigns = createAsyncThunk<CampaignResponse, number>(
   }
 );
 
-export const addCampaign = createAsyncThunk<Campaign, Campaign>(
+export const addCampaign = createAsyncThunk<Campaign, Omit<Campaign, 'id'>>(
   'campaign/addCampaign',
-  async (campaignData: Campaign, { rejectWithValue }) => {
+  async (campaignData, { rejectWithValue }) => {
     try {
       const response = await createCampaign(campaignData);
       return response.data;
@@ -25,6 +25,7 @@ export const addCampaign = createAsyncThunk<Campaign, Campaign>(
     }
   }
 );
+
 
 export const updateCampaign = createAsyncThunk<Campaign, { id: number; campaignData: Campaign }>(
   'campaign/updateCampaign',
@@ -49,3 +50,15 @@ export const removeCampaign = createAsyncThunk<number, number>(
     }
   }
 );
+
+export const getFilteredCampaigns = createAsyncThunk(
+    'campaign/getFilteredCampaigns',
+    async ({ page, name }: { page: number; name?: string }, { rejectWithValue }) => {
+      try {
+        const response = await fetchCampaigns(page, name);
+        return response.data;
+      } catch (error) {
+        return rejectWithValue('Erro ao buscar campanhas');
+      }
+    }
+  );
