@@ -1,0 +1,71 @@
+@import '../../styles/mixins';
+
+.tableContainer {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  min-height: 95vh;
+  @include flexAlignment(column, flex-start, flex-start);
+  .tableWrapper {
+    @include size;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.tableRow {
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+.topBar {
+    @include flexAlignment(row, space-between);
+    margin-bottom: 16px;
+    
+    .searchInput {
+        width: 40%;
+        padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f1f1f1;
+      outline: none;
+      
+      &:focus {
+          border-color: #007bff;
+        }
+    }
+    
+    .searchButton {
+        margin-left: 8px;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+    
+    .newButton {
+        background-color: #4caf50;
+        color: white;
+        
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+}
+
+.actionButton {
+    transition: transform 0.2s ease;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+ .pagination {
+    @include flexAlignment(row, flex-end);
+ }
+}  
+

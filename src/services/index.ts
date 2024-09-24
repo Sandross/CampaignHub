@@ -24,6 +24,55 @@ let campaigns: Campaign[] = [
         dataFim: '2024-12-01',
         status: 'ativa',
     },
+    {
+        id: 4,
+        name: 'Campanha 4',
+        dataInicio: '2024-10-01',
+        dataFim: '2024-11-01',
+        status: 'ativa',
+    },
+    {
+        id: 5,
+        name: 'Campanha 5',
+        dataInicio: '2024-07-01',
+        dataFim: '2024-08-01',
+        status: 'expirada',
+    },
+    {
+        id: 6,
+        name: 'Campanha 6',
+        dataInicio: '2024-11-01',
+        dataFim: '2024-12-01',
+        status: 'ativa',
+    },
+    {
+        id: 7,
+        name: 'Campanha 7',
+        dataInicio: '2024-10-01',
+        dataFim: '2024-11-01',
+        status: 'ativa',
+    },
+    {
+        id: 8,
+        name: 'Campanha 8',
+        dataInicio: '2024-07-01',
+        dataFim: '2024-08-01',
+        status: 'expirada',
+    },
+    {
+        id: 9,
+        name: 'Campanha 9',
+        dataInicio: '2024-11-01',
+        dataFim: '2024-12-01',
+        status: 'ativa',
+    },
+    {
+        id: 10,
+        name: 'Campanha 10',
+        dataInicio: '2024-11-01',
+        dataFim: '2024-12-01',
+        status: 'ativa',
+    },
 ];
 
 let meta = {
@@ -54,7 +103,6 @@ mock.onGet('/campaigns').reply((config) => {
         pageSize,
         totalItems: campaigns.length,
     };
-
     return [200, { campaigns: paginatedData, meta }];
 });
 
@@ -81,6 +129,5 @@ mock.onPut(/\/campaigns\/\d+/).reply((config) => {
 mock.onDelete(/\/campaigns\/\d+/).reply((config) => {
     const campaignId = parseInt(config.url!.split('/').pop()!);
     campaigns = campaigns.filter((campaign) => campaign.id !== campaignId);
-
     return [200, { message: 'Campanha deletada com sucesso!' }];
 });
