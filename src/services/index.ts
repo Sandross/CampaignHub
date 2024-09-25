@@ -134,8 +134,12 @@ mock.onPut(/\/campaigns\/\d+/).reply((config) => {
         campaign.id === campaignId ? { ...campaign, ...updatedCampaign } : campaign
     );
 
-    return [200, { message: 'Campanha atualizada com sucesso!' }];
+    const campaign = campaigns.find((c) => c.id === campaignId);
+
+    return [200, campaign];
 });
+
+
 
 mock.onDelete(/\/campaigns\/\d+/).reply((config) => {
     const campaignId = parseInt(config.url!.split('/').pop()!);

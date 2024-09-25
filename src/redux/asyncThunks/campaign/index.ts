@@ -28,16 +28,16 @@ export const addCampaign = createAsyncThunk<Campaign, Omit<Campaign, 'id'>>(
 
 
 export const updateCampaign = createAsyncThunk<Campaign, { id: number; campaignData: Campaign }>(
-  'campaign/updateCampaign',
-  async ({ id, campaignData }, { rejectWithValue }) => {
-    try {
-      const response = await editCampaign(id, campaignData);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue('Erro ao editar campanha');
+    'campaign/updateCampaign',
+    async ({ id, campaignData }, { rejectWithValue }) => {
+      try {
+        const response = await editCampaign(id, campaignData);
+        return response.data;
+      } catch (error) {
+        return rejectWithValue('Erro ao editar campanha');
+      }
     }
-  }
-);
+  );
 
 export const removeCampaign = createAsyncThunk<number, number>(
   'campaign/removeCampaign',

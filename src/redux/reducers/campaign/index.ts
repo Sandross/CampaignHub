@@ -79,13 +79,14 @@ export const campaignSlice = createSlice({
         ];
       });
 
-    builder
-      .addCase(updateCampaign.fulfilled, (state, action: PayloadAction<any>) => {
+      builder
+      .addCase(updateCampaign.fulfilled, (state, action: PayloadAction<Campaign>) => {
         const index = state.campaigns.findIndex(campaign => campaign.id === action.payload.id);
         if (index !== -1) {
           state.campaigns[index] = { ...state.campaigns[index], ...action.payload };
         }
       });
+    
 
     builder
       .addCase(removeCampaign.fulfilled, (state, action: PayloadAction<number>) => {
