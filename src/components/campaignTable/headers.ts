@@ -1,2 +1,2 @@
 
-export const campaignHeaders = ['Logo', 'ID', 'Nome', 'Data Inicial', 'Data Final', 'Status', 'Ações'];
+export const campaignHeaders = ['ID', 'Nome', 'Data Inicial', 'Data Final', 'Status', 'Ações'];

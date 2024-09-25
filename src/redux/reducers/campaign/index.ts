@@ -9,6 +9,7 @@ export interface CampaignState {
   meta: {
     totalPages: number;
     currentPage: number;
+    pageSize: number;
   };
 }
 
@@ -19,6 +20,7 @@ const initialState: CampaignState = {
   meta: {
     totalPages: 0,
     currentPage: 1,
+    pageSize: 10,
   },
 };
 
@@ -31,16 +33,14 @@ export const campaignSlice = createSlice({
       .addCase(getCampaigns.pending, (state) => {
         state.loading = true;
       })
-.addCase(getCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
-    state.loading = false;
-    const newCampaigns = action.payload.campaigns.filter(
-      (apiCampaign: Campaign) => !state.campaigns.some((stateCampaign) => stateCampaign.id === apiCampaign.id)
-    );
-    state.campaigns = [...state.campaigns, ...newCampaigns];
-    state.meta = action.payload.meta;
-  })
-  
-
+      .addCase(getCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        const newCampaigns = action.payload.campaigns.filter(
+          (apiCampaign: Campaign) => !state.campaigns.some((stateCampaign) => stateCampaign.id === apiCampaign.id)
+        );
+        state.campaigns = [...state.campaigns, ...newCampaigns];
+        state.meta = action.payload.meta;
+      })
       .addCase(getCampaigns.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
@@ -62,7 +62,21 @@ export const campaignSlice = createSlice({
 
     builder
       .addCase(addCampaign.fulfilled, (state, action: PayloadAction<any>) => {
-        state.campaigns.push(action.payload);
+        const pageSize = state.meta.pageSize;
+        const totalItems = state.campaigns.length + 1;
+
+        const totalPages = Math.ceil(totalItems / pageSize);
+        state.meta.totalPages = totalPages;
+        state.meta.currentPage = totalPages;
+
+        const startIndex = (totalPages - 1) * pageSize;
+        const endIndex = totalPages * pageSize;
+        
+        state.campaigns = [
+          ...state.campaigns.slice(0, startIndex),
+          action.payload,
+          ...state.campaigns.slice(startIndex, endIndex - 1)
+        ];
       });
 
     builder
@@ -79,4 +93,5 @@ export const campaignSlice = createSlice({
       });
   },
 });
+
 export const campaignReducer = campaignSlice.reducer;

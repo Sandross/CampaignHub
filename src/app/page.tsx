@@ -1,4 +1,3 @@
-import { getCampaigns } from '@/redux/asyncThunks/campaign';
 import CampaignTable from '@/components/campaignTable';
 
 export default async function Home() {
