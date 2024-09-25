@@ -120,7 +120,6 @@ mock.onGet('/campaigns').reply((config) => {
 mock.onPost('/campaigns').reply((config) => {
     const newCampaign = JSON.parse(config.data);
     const id = campaigns.length + 1;
-
     campaigns.push({ ...newCampaign, id });
 
     return [201, { message: 'Campanha criada com sucesso!' }];

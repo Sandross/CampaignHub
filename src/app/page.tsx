@@ -1,11 +1,10 @@
 import dynamic from 'next/dynamic';
-import CampaignTable from '@/components/campaignTable';
 const NoSSRComponent = dynamic(() => import('../components/campaignTable'), { ssr: false });
-
+import styles from './page.module.scss';
 export default async function Home() {
   return (
-    <div>
-      <h1 style={{ padding: '2rem'}}>Campanhas</h1>
+    <div className={styles.home}>
+      <h1>Campanhas</h1>
       <NoSSRComponent />
     </div>
   );

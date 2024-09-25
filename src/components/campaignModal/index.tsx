@@ -1,5 +1,5 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm, Controller, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Button,
@@ -20,21 +20,41 @@ import { addCampaign } from '@/redux/asyncThunks/campaign';
 import campaignSchema from './validation';
 import AddIcon from '@mui/icons-material/Add';
 
-const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, }> = ({ open, handleClose }) => {
+const CampaignModal: React.FC<{ open: boolean; handleClose: () => void }> = ({ open, handleClose }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(campaignSchema),
     defaultValues: {
       dataInicio: dayjs().toDate(),
       dataFim: dayjs().add(7, 'day').toDate(),
-      status: "ativa"
+      status: 'ativa',
     },
   });
+
+  const dataInicio = useWatch({
+    control,
+    name: 'dataInicio',
+  });
+  const dataFim = useWatch({
+    control,
+    name: 'dataFim',
+  });
+
+  useEffect(() => {
+    const today = dayjs().startOf('day');
+    
+    if (dayjs(dataInicio).isBefore(today)) {
+      setValue('status', 'expirada');
+    } else if (dayjs(dataFim).isBefore(today)) {
+      setValue('status', 'expirada');
+    }
+  }, [dataInicio, dataFim, setValue]);
 
   const onSubmit = (data: any) => {
     const campaignData = {
@@ -42,10 +62,13 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, }> = ({ 
       dataInicio: dayjs(data.dataInicio).format('YYYY-MM-DD'),
       dataFim: dayjs(data.dataFim).format('YYYY-MM-DD'),
     };
+
     dispatch(addCampaign(campaignData)).then(() => {
       handleClose();
     });
   };
+
+  const today = dayjs().startOf('day');
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -80,9 +103,15 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, }> = ({ 
                   error={!!errors.status}
                   helperText={errors.status?.message}
                 >
-                  <MenuItem value="ativa">Ativa</MenuItem>
-                  <MenuItem value="pausada">Pausada</MenuItem>
-                  <MenuItem value="expirada">Expirada</MenuItem>
+                  <MenuItem value="ativa" disabled={dayjs(dataInicio).isBefore(today)}>
+                    Ativa
+                  </MenuItem>
+                  <MenuItem value="pausada" disabled={dayjs(dataInicio).isBefore(today)}>
+                    Pausada
+                  </MenuItem>
+                  <MenuItem value="expirada" disabled={!dayjs(dataInicio).isBefore(today)}>
+                    Expirada
+                  </MenuItem>
                 </TextField>
               )}
             />

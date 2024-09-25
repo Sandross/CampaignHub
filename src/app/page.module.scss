@@ -1,0 +1,8 @@
+@import '../styles/mixins';
+
+.home{
+ @include size;
+ min-height: 100vh;
+ padding: 2rem;
+ @include flexAlignment(column, space-around, flex-start);
+}
