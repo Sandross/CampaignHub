@@ -211,7 +211,7 @@ const CampaignTable: React.FC = () => {
                     />
                 </div>
             </TableContainer>
-            <CampaignModal open={open} handleClose={handleClose}/>
+            <CampaignModal open={open} handleClose={handleClose} setPage={setPage}/>
 
             <ConfirmationModal
                 open={isDeleteModalOpen}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -20,7 +20,7 @@ import { addCampaign } from '@/redux/asyncThunks/campaign';
 import campaignSchema from './validation';
 import AddIcon from '@mui/icons-material/Add';
 
-const CampaignModal: React.FC<{ open: boolean; handleClose: () => void}> = ({ open, handleClose }) => {
+const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, setPage: Dispatch<SetStateAction<number>>}> = ({ open, handleClose, setPage }) => {
   const dispatch = useDispatch<AppDispatch>();
   
   const {
@@ -63,8 +63,9 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void}> = ({ op
       dataFim: dayjs(data.dataFim).format('YYYY-MM-DD'),
     };
 
-    dispatch(addCampaign(campaignData)).then(() => {
+    dispatch(addCampaign(campaignData)).then((response: any) => {
       handleClose();
+      setPage(response.payload.meta.currentPage)
     });
   };
 
