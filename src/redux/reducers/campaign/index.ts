@@ -35,13 +35,17 @@ const initialState: CampaignState = {
 export const campaignSlice = createSlice({
     name: 'campaign',
     initialState,
-    reducers: {},
+    reducers: {
+        setCampaigns: (state, action: PayloadAction<Campaign[]>) => {
+            state.campaigns = action.payload;
+          },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getCampaigns.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(getCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
+            .addCase(getCampaigns.fulfilled, (state, action: PayloadAction<{ campaigns: Campaign[], meta: CampaignState['meta'] }>) => {
                 state.loading = false;
                 state.campaigns = action.payload.campaigns;
                 state.meta = action.payload.meta;
@@ -53,7 +57,7 @@ export const campaignSlice = createSlice({
             .addCase(getFilteredCampaigns.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(getFilteredCampaigns.fulfilled, (state, action: PayloadAction<any>) => {
+            .addCase(getFilteredCampaigns.fulfilled, (state, action: PayloadAction<{ campaigns: Campaign[], meta: CampaignState['meta'] }>) => {
                 state.loading = false;
                 state.campaigns = action.payload.campaigns;
                 state.meta = action.payload.meta;
@@ -101,4 +105,5 @@ export const campaignSlice = createSlice({
     },
 });
 
+export const { setCampaigns } = campaignSlice.actions;
 export const campaignReducer = campaignSlice.reducer;

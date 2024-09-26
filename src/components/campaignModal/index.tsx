@@ -19,18 +19,23 @@ import { useDispatch } from 'react-redux';
 import { addCampaign } from '@/redux/asyncThunks/campaign';
 import campaignSchema from './validation';
 import AddIcon from '@mui/icons-material/Add';
+import { InferType } from 'yup';
+import { setCampaigns } from '@/redux/reducers/campaign';
 
-const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, setPage: Dispatch<SetStateAction<number>>}> = ({ open, handleClose, setPage }) => {
+type CampaignFormData = InferType<typeof campaignSchema>;
+
+const CampaignModal: React.FC<{ open: boolean; handleClose: () => void; setPage: Dispatch<SetStateAction<number>> }> = ({ open, handleClose, setPage }) => {
   const dispatch = useDispatch<AppDispatch>();
-  
+
   const {
     handleSubmit,
     control,
     setValue,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(campaignSchema),
+  } = useForm<CampaignFormData>({
+    resolver: yupResolver<CampaignFormData>(campaignSchema),
     defaultValues: {
+      name: '',
       dataInicio: dayjs().toDate(),
       dataFim: dayjs().add(7, 'day').toDate(),
       status: 'ativa',
@@ -48,7 +53,7 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, setPage:
 
   useEffect(() => {
     const today = dayjs().startOf('day');
-    
+
     if (dayjs(dataInicio).isBefore(today)) {
       setValue('status', 'expirada');
     } else if (dayjs(dataFim).isBefore(today)) {
@@ -56,18 +61,29 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void, setPage:
     }
   }, [dataInicio, dataFim, setValue]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: CampaignFormData) => {
     const campaignData = {
       ...data,
       dataInicio: dayjs(data.dataInicio).format('YYYY-MM-DD'),
       dataFim: dayjs(data.dataFim).format('YYYY-MM-DD'),
     };
-
+  
+    const existingCampaigns = window.localStorage.getItem('campaigns');
+    let campaignsArray = existingCampaigns ? JSON.parse(existingCampaigns) : [];
+  
+    campaignsArray.push(campaignData);
+  
+    window.localStorage.setItem('campaigns', JSON.stringify(campaignsArray));
+  
+    dispatch(setCampaigns(campaignsArray));
+  
     dispatch(addCampaign(campaignData)).then((response: any) => {
       handleClose();
-      setPage(response.payload.meta.currentPage)
+      setPage(response.payload.meta.currentPage);
+      setValue('name', '')
     });
   };
+  
 
   const today = dayjs().startOf('day');
 

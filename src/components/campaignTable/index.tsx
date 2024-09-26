@@ -5,7 +5,6 @@ import {
     getFilteredCampaigns,
     updateCampaign,
     removeCampaign,
-    getCampaigns,
 } from '@/redux/asyncThunks/campaign';
 import { RootState, AppDispatch } from '@/redux';
 import { useDebounce } from '@/hooks';
@@ -72,6 +71,7 @@ const CampaignTable: React.FC = () => {
         setDataInicioError(false);
         setDataFimError(false);
     };
+    
 
     const handleSave = (id: number) => {
         if (editedCampaign) {
