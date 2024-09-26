@@ -5,6 +5,7 @@ import {
     getFilteredCampaigns,
     updateCampaign,
     removeCampaign,
+    getCampaigns,
 } from '@/redux/asyncThunks/campaign';
 import { RootState, AppDispatch } from '@/redux';
 import { useDebounce } from '@/hooks';
@@ -210,7 +211,7 @@ const CampaignTable: React.FC = () => {
                     />
                 </div>
             </TableContainer>
-            <CampaignModal open={open} handleClose={handleClose} />
+            <CampaignModal open={open} handleClose={handleClose}/>
 
             <ConfirmationModal
                 open={isDeleteModalOpen}

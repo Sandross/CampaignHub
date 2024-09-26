@@ -18,7 +18,7 @@ export const addCampaign = createAsyncThunk<Campaign, Omit<Campaign, 'id'>>(
   'campaign/addCampaign',
   async (campaignData, { rejectWithValue }) => {
     try {
-      const response = await createCampaign(campaignData);
+      const response = await createCampaign(campaignData)
       return response.data;
     } catch (error) {
       return rejectWithValue('Erro ao criar campanha');
@@ -43,8 +43,8 @@ export const removeCampaign = createAsyncThunk<number, number>(
   'campaign/removeCampaign',
   async (id: number, { rejectWithValue }) => {
     try {
-      await deleteCampaign(id);
-      return id;
+        const response = await deleteCampaign(id);
+        return response.data;
     } catch (error) {
       return rejectWithValue('Erro ao deletar campanha');
     }

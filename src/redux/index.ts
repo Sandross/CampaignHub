@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['campaign'],
-};
+    key: 'root',
+    storage,
+    whitelist: ['campaign'],
+    timeout: 1000,
+  };
+  
 
 const persistedReducer = persistReducer(persistConfig, campaignReducer);
 

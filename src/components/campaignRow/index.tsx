@@ -37,6 +37,8 @@ const CampaignRow: React.FC<CampaignRowProps> = ({
     handleOpenDeleteModal,
     disableSave,
 }) => {
+    const isBeforeToday = dayjs(editedCampaign?.dataInicio).isBefore(dayjs().startOf('day'));
+    
     return (
         <TableRow key={campaign.id}>
             <TableCell align="center">{campaign.id}</TableCell>
@@ -59,7 +61,6 @@ const CampaignRow: React.FC<CampaignRowProps> = ({
                         value={editedCampaign?.dataInicio || ''}
                         onChange={(e) => handleDataInicioChange(e.target.value)}
                         error={dataInicioError}
-                        helperText={dataInicioError ? 'Data inicial inválida' : ''}
                     />
                 ) : (
                     campaign.dataInicio
@@ -73,7 +74,6 @@ const CampaignRow: React.FC<CampaignRowProps> = ({
                         value={editedCampaign?.dataFim || ''}
                         onChange={(e) => handleDataFimChange(e.target.value)}
                         error={dataFimError}
-                        helperText={dataFimError ? 'Data final deve ser maior que a data inicial' : ''}
                     />
                 ) : (
                     campaign.dataFim
@@ -85,16 +85,16 @@ const CampaignRow: React.FC<CampaignRowProps> = ({
                         value={editedCampaign?.status || ''}
                         size="small"
                         onChange={handleStatusChange}
-                        disabled={dayjs(editedCampaign?.dataInicio).isBefore(dayjs())}
+                        disabled={isBeforeToday}
                     >
-                        <MenuItem value="ativa" disabled={dayjs(editedCampaign?.dataInicio).isBefore(dayjs())}>
+                        <MenuItem value="ativa" disabled={isBeforeToday}>
                             Ativa
                         </MenuItem>
-                        <MenuItem value="inativa" disabled={dayjs(editedCampaign?.dataInicio).isBefore(dayjs())}>
+                        <MenuItem value="inativa" disabled={isBeforeToday}>
                             Inativa
                         </MenuItem>
 
-                        <MenuItem value="expirada" disabled={!dayjs(editedCampaign?.dataInicio).isBefore(dayjs())}>
+                        <MenuItem value="expirada" disabled={!isBeforeToday}>
                             Expirada
                         </MenuItem>
                     </Select>

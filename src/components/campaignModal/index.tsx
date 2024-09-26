@@ -20,9 +20,9 @@ import { addCampaign } from '@/redux/asyncThunks/campaign';
 import campaignSchema from './validation';
 import AddIcon from '@mui/icons-material/Add';
 
-const CampaignModal: React.FC<{ open: boolean; handleClose: () => void }> = ({ open, handleClose }) => {
+const CampaignModal: React.FC<{ open: boolean; handleClose: () => void}> = ({ open, handleClose }) => {
   const dispatch = useDispatch<AppDispatch>();
-
+  
   const {
     handleSubmit,
     control,

@@ -6,9 +6,9 @@ export interface Campaign {
     name: string;
     dataInicio: string;
     dataFim: string;
-    status: 'ativa' | 'expirada' | string;
-  }
-  
+    status: string;
+}
+
   export interface CampaignMeta {
     totalPages: number;
     currentPage: number;
