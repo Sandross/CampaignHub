@@ -2,12 +2,7 @@ import React from 'react';
 import { TextField, Button, InputAdornment, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
-
-interface SearchAndAddBarProps {
-  searchTerm: string;
-  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onAddClick: () => void;
-}
+import { SearchAndAddBarProps } from '@/types/index';
 
 const SearchAndAddBar: React.FC<SearchAndAddBarProps> = ({
   searchTerm,

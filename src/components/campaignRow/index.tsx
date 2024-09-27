@@ -1,25 +1,8 @@
-import React, { ReactNode } from 'react';
-import { TextField, TableCell, TableRow, Select, MenuItem, Chip, SelectChangeEvent } from '@mui/material';
+import React from 'react';
+import { TextField, TableCell, TableRow, Select, MenuItem, Chip } from '@mui/material';
 import dayjs from 'dayjs';
-import { Campaign } from '@/types';
+import { CampaignRowProps } from '@/types';
 import CampaignActions from '../campaignActions';
-
-interface CampaignRowProps {
-    campaign: Campaign;
-    editingCampaignId: number | null;
-    editedCampaign: Campaign | null;
-    dataInicioError: boolean;
-    dataFimError: boolean;
-    handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleDataInicioChange: (value: string) => void;
-    handleDataFimChange: (value: string) => void;
-    handleStatusChange: (event: SelectChangeEvent<string>, child: ReactNode) => void
-    handleSave: () => void;
-    handleCancel: () => void;
-    handleEdit: () => void;
-    handleOpenDeleteModal: () => void;
-    disableSave: boolean;
-}
 
 const CampaignRow: React.FC<CampaignRowProps> = ({
     campaign,
