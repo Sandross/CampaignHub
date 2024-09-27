@@ -10,52 +10,52 @@ export interface Campaign {
     status: string;
 }
 
-  export interface CampaignMeta {
+export interface CampaignMeta {
     totalPages: number;
     currentPage: number;
     pageSize: number;
     totalItems: number;
-  }
-  
-  export interface CampaignResponse {
+}
+
+export interface CampaignResponse {
     campaigns: Campaign[];
     meta: CampaignMeta;
-  }
-  
-  export interface Props {
+}
+
+export interface Props {
     children?: ReactNode;
-  }
-  
-  export interface State {
+}
+
+export interface State {
     hasError: boolean;
-  }
+}
 
 
-  export interface INewCampaign {
+export interface INewCampaign {
     name: string;
     status: string;
     dataInicio: Dayjs | null;
     dataFim: Dayjs | null;
-  }
-  
-  export interface ConfirmationModalProps {
+}
+
+export interface ConfirmationModalProps {
     open: boolean;
     onClose: () => void;
     onConfirm: () => void;
     title: string;
     message: string;
-  }
+}
 
-  export interface CampaignActionsProps {
+export interface CampaignActionsProps {
     isEditing: boolean;
     onSave: () => void;
     onCancel: () => void;
     onEdit: () => void;
     onDelete: () => void;
     disableSave: boolean;
-  }
+}
 
-  export interface CampaignRowProps {
+export interface CampaignRowProps {
     campaign: Campaign;
     editingCampaignId: number | null;
     editedCampaign: Campaign | null;
@@ -76,4 +76,19 @@ export interface SearchAndAddBarProps {
     searchTerm: string;
     onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onAddClick: () => void;
-  }
+}
+
+export interface CampaignInput {
+    name: string;
+    status: 'ativa' | 'pausada' | 'expirada';
+    dataInicio: string;
+    dataFim: string;
+}
+
+export interface Campaign {
+    id: number;
+    name: string;
+    status: string;
+    dataInicio: string;
+    dataFim: string;
+}

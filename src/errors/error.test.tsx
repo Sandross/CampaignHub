@@ -4,7 +4,7 @@ import ErrorBoundary from './';
 
 const ErrorThrowingComponent: React.FC = () => {
     throw new Error('Test error');
-  };
+};
 
 describe('ErrorBoundary', () => {
   it('should render children when there is no error', () => {
