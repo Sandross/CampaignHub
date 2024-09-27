@@ -42,6 +42,13 @@ Para garantir uma validação eficaz e simples dos formulários, utilizei o **Yu
 - **Melhoria na experiência do usuário**: O React Hook Form otimiza a performance de formulários ao evitar renderizações desnecessárias, garantindo uma experiência suave.
 - **Feedback imediato ao usuário**: Com a integração do Yup, é possível fornecer mensagens de erro em tempo real, à medida que o usuário preenche os campos do formulário.
 
+### 10. 🧪 **Testes Unitários com Jest**
+Implementei testes unitários utilizando **Jest** para garantir a qualidade do código e prevenir regressões. O uso do Jest proporciona uma maneira rápida e confiável de testar a lógica de negócios e componentes da aplicação. Essa abordagem ajuda a identificar possíveis falhas antes que cheguem ao ambiente de produção.
+
+- **Cobertura de Testes**: Com o Jest, conseguimos monitorar a cobertura dos testes e garantir que as principais funcionalidades da aplicação estejam devidamente testadas.
+- **Execução dos Testes**: Os testes podem ser executados rapidamente, e o Jest gera relatórios detalhados para identificar possíveis falhas.
+
+
 ## ⚙️ Instalação e Configuração
 
 ```bash
