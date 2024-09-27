@@ -48,6 +48,18 @@ Implementei testes unitários utilizando **Jest** para garantir a qualidade do c
 - **Cobertura de Testes**: Com o Jest, conseguimos monitorar a cobertura dos testes e garantir que as principais funcionalidades da aplicação estejam devidamente testadas.
 - **Execução dos Testes**: Os testes podem ser executados rapidamente, e o Jest gera relatórios detalhados para identificar possíveis falhas.
 
+### 11. 🔒 **Middleware para Autenticação de Rotas com Cookies**
+
+Implementei um **middleware** para autenticação de rotas, utilizando **cookies** como método de autenticação, garantindo que apenas usuários autenticados possam acessar áreas restritas da aplicação. O middleware verifica a presença de um `accessToken` nos cookies de cada requisição e redireciona os usuários não autenticados para a página de login.
+
+- **Proteção de Rotas**: Todas as rotas que requerem autenticação são protegidas pelo middleware, garantindo que usuários sem o token de acesso sejam redirecionados para a tela de login.
+- **Verificação de Token**: O middleware verifica a presença e validade do token de autenticação nos cookies do navegador, evitando o uso de tokens inválidos ou expirados.
+- **Redirecionamento Automático**: Se o token estiver ausente ou inválido, o usuário é automaticamente redirecionado para a página de login, garantindo uma experiência segura e protegida.
+
+
+## Credenciais
+Email: awsales@admin.com
+Password: admin
 
 ## ⚙️ Instalação e Configuração
 

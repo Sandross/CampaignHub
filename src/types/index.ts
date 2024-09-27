@@ -92,3 +92,8 @@ export interface Campaign {
     dataInicio: string;
     dataFim: string;
 }
+
+export interface ILoginForm {
+    email: string;
+    password: string;
+}

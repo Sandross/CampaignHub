@@ -1,0 +1,120 @@
+@import '../../styles/mixins';
+
+$background-color: #000000;
+$input-background: #1a1a1a;
+$input-border-color: #444444;
+$button-background: #ffdd57;
+$button-hover: #e6c347;
+$text-color: #ffffff;
+$error-color: #ff4d4d;
+
+.loginCard {
+  @include flexAlignment(column, center, center);
+  @include size(350px, 450px);
+  background-color: $background-color;
+  border: 1px solid $input-border-color;
+  padding: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  color: $text-color;
+  border-radius: 10px;
+
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .inputContainer {
+    width: 100%;
+    margin-bottom: 20px;
+
+    .input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid $input-border-color;
+      border-radius: 5px;
+      background-color: $input-background;
+      color: $text-color;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+
+      &::placeholder {
+        color: lighten($text-color, 30%);
+      }
+
+      &:focus {
+        border-color: #ffdd57;
+        background-color: #262626;
+        outline: none;
+      }
+    }
+
+    .error {
+      color: $error-color;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+  
+  .loginButton {
+    @include size(100%, 45px);
+    background-color: $button-background;
+    color: $background-color;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: $button-hover;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      background-color: darken($button-hover, 10%);
+      transform: translateY(0);
+    }
+  }
+  
+  .forgotPassword {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #ffdd57;
+    cursor: pointer;
+    text-align: right;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: lighten(#ffdd57, 20%);
+      text-decoration: underline;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    @include size(90%, auto);
+    padding: 15px;
+
+    .loginFormContainer {
+      @include size(100%, auto);
+    }
+
+    .loginButton {
+      @include size(100%, 40px);
+      font-size: 0.9rem;
+    }
+
+    .input {
+      padding: 10px 12px;
+      font-size: 0.9rem;
+    }
+
+    .error {
+      font-size: 12px;
+    }
+
+    .forgotPassword {
+      font-size: 0.8rem;
+    }
+  }
+}

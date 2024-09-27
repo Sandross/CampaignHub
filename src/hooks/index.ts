@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export const useDebounce = (value: string, delay: number): string => {
@@ -15,3 +16,22 @@ export const useDebounce = (value: string, delay: number): string => {
     
   return debouncedValue;
 };
+
+// export default function useAuth() {
+//   const router = useRouter();
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [checkingAuth, setCheckingAuth] = useState(true);
+
+//   useEffect(() => {
+//     const token = localStorage.getItem('accessToken');
+//     if (token) {
+//       setIsAuthenticated(true);
+//     } else {
+//       router.push('/login');
+//     }
+//     setCheckingAuth(false);
+//   }, [router]);
+
+//   return { isAuthenticated, checkingAuth };
+// }
+
