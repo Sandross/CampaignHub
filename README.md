@@ -9,7 +9,7 @@ Este projeto, chamado **CampaignHub**, foi desenvolvido para otimizar o gerencia
 ### 1. ☁️ **AWS**
 O deploy da aplicação foi feito utilizando o **AWS Amplify**, que facilita a implementação contínua e integrações com serviços AWS, além de automatizar o processo de CI/CD (Integração e Entrega Contínuas), garantindo uma pipeline de deploy confiável e eficiente.
 
-🔗 A aplicação está disponível neste link: [Acessar aplicação](https://main.d2lkjvhvc510nq.amplifyapp.com/).
+🔗 A aplicação está disponível neste link: [Acessar aplicação](https://main.d3iydjd80flhci.amplifyapp.com/).
 
 ### 2. ⚙️ **Axios Mock Adapter para Simulação de Requisições à API**
 Utilizei o **Axios Mock Adapter** para simular requisições à API durante o desenvolvimento, permitindo o uso de dados mockados. Essa abordagem facilita o desenvolvimento e teste de funcionalidades sem depender de um backend real, fornecendo respostas pré-definidas para as requisições e simulando diferentes cenários de resposta da API, como sucessos ou erros.
