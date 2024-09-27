@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import awsalesLogo from '@/assets/awsales.png';
 import styles from './style.module.scss';
@@ -7,12 +7,12 @@ import Loading from '../loading';
 import schema from './validation';
 import { ILoginForm } from '@/types/index';
 import Image from 'next/image';
-import Cookies from 'js-cookie'; // Importando js-cookie para gerenciar cookies
+import Cookies from 'js-cookie';
 
 const LoginForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -40,21 +40,33 @@ const LoginForm: React.FC = () => {
           <Image src={awsalesLogo} alt="Tractian Logo" className={styles.logo} />
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputContainer}>
-              <input
-                type="email"
-                placeholder="Email"
-                {...register('email')}
-                className={styles.input}
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    {...field}
+                    className={styles.input}
+                  />
+                )}
               />
               {errors.email && <p className={styles.error}>{errors.email.message}</p>}
             </div>
 
             <div className={styles.inputContainer}>
-              <input
-                type="password"
-                placeholder="Password"
-                {...register('password')}
-                className={styles.input}
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    {...field}
+                    className={styles.input}
+                  />
+                )}
               />
               {errors.password && <p className={styles.error}>{errors.password.message}</p>}
             </div>
