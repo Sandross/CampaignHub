@@ -42,16 +42,17 @@ Para garantir uma validação eficaz e simples dos formulários, utilizei o **Yu
 - **Melhoria na experiência do usuário**: O React Hook Form otimiza a performance de formulários ao evitar renderizações desnecessárias, garantindo uma experiência suave.
 - **Feedback imediato ao usuário**: Com a integração do Yup, é possível fornecer mensagens de erro em tempo real, à medida que o usuário preenche os campos do formulário.
 
-## ⚙️ **Instalação e Configuração**
+## ⚙️ Instalação e Configuração
 
-1. Clone o repositório:
-   git clone git@github.com:Sandross/CampaignHub.git
+```bash
+# Clone o repositório:
+git clone git@github.com:Sandross/CampaignHub.git
 
-2. Instale as dependências:
-   npm install
+# Instale as dependências:
+npm install
 
-3. Execute a aplicação:
-   npm run dev
+# Execute a aplicação:
+npm run dev
 
-4. Teste a aplicação:
-   npm run test
+# Teste a aplicação:
+npm run test
