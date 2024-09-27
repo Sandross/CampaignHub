@@ -58,8 +58,8 @@ Implementei um **middleware** para autenticação de rotas, utilizando **cookies
 
 
 ## Credenciais
-Email: awsales@admin.com
-Password: admin
+- **Email**: awsales@admin.com
+- **Password**: admin
 
 ## ⚙️ Instalação e Configuração
 
