@@ -69,7 +69,7 @@ const CampaignModal: React.FC<{ open: boolean; handleClose: () => void; setPage:
     };
   
     const existingCampaigns = window.localStorage.getItem('campaigns');
-    let campaignsArray = existingCampaigns ? JSON.parse(existingCampaigns) : [];
+    const campaignsArray = existingCampaigns ? JSON.parse(existingCampaigns) : [];
   
     campaignsArray.push(campaignData);
   

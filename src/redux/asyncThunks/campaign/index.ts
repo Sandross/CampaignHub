@@ -9,6 +9,7 @@ export const getCampaigns = createAsyncThunk<CampaignResponse, number>(
       const response = await fetchCampaigns(page);
       return response.data;
     } catch (error) {
+        console.log(error);
       return rejectWithValue('Erro ao buscar campanhas');
     }
   }
@@ -21,6 +22,8 @@ export const addCampaign = createAsyncThunk<Campaign, Omit<Campaign, 'id'>>(
       const response = await createCampaign(campaignData)
       return response.data;
     } catch (error) {
+        console.log(error);
+
       return rejectWithValue('Erro ao criar campanha');
     }
   }
@@ -34,6 +37,8 @@ export const updateCampaign = createAsyncThunk<Campaign, { id: number; campaignD
         const response = await editCampaign(id, campaignData);
         return response.data;
       } catch (error) {
+        console.log(error);
+
         return rejectWithValue('Erro ao editar campanha');
       }
     }
@@ -46,6 +51,8 @@ export const removeCampaign = createAsyncThunk<number, number>(
         const response = await deleteCampaign(id);
         return response.data;
     } catch (error) {
+        console.log(error);
+
       return rejectWithValue('Erro ao deletar campanha');
     }
   }
@@ -58,6 +65,8 @@ export const getFilteredCampaigns = createAsyncThunk(
         const response = await fetchCampaigns(page, name);
         return response.data;
       } catch (error) {
+        console.log(error);
+
         return rejectWithValue('Erro ao buscar campanhas');
       }
     }
