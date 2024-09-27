@@ -2,64 +2,68 @@ import axios from 'axios';
 import { Campaign } from '@/types';
 import MockAdapter from 'axios-mock-adapter';
 
-let campaigns: Campaign[] = JSON.parse(window.localStorage.getItem('campaigns') || '[]');
+let campaigns: Campaign[] = [];
+if (typeof window !== 'undefined') {
 
-if (campaigns.length === 0) {
-    campaigns = [
-        {
-            id: 1,
-            name: 'Campanha 1',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 2,
-            name: 'Campanha 2',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 3,
-            name: 'Campanha 3',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 4,
-            name: 'Campanha 4',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 5,
-            name: 'Campanha 5',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 6,
-            name: 'Campanha 6',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-        {
-            id: 7,
-            name: 'Campanha 7',
-            dataInicio: '2024-10-01',
-            dataFim: '2024-11-01',
-            status: 'ativa',
-        },
-    ];
+    campaigns = JSON.parse(window.localStorage.getItem('campaigns') || '[]');
 
-    window.localStorage.setItem('campaigns', JSON.stringify(campaigns));
+    if (campaigns.length === 0) {
+        campaigns = [
+            {
+                id: 1,
+                name: 'Campanha 1',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 2,
+                name: 'Campanha 2',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 3,
+                name: 'Campanha 3',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 4,
+                name: 'Campanha 4',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 5,
+                name: 'Campanha 5',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 6,
+                name: 'Campanha 6',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+            {
+                id: 7,
+                name: 'Campanha 7',
+                dataInicio: '2024-10-01',
+                dataFim: '2024-11-01',
+                status: 'ativa',
+            },
+        ];
+
+        window.localStorage.setItem('campaigns', JSON.stringify(campaigns));
+    }
+
 }
-
 let meta = {
     totalPages: 1,
     currentPage: 1,

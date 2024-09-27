@@ -4,15 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-interface CampaignActionsProps {
-  isEditing: boolean;
-  onSave: () => void;
-  onCancel: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
-  disableSave: boolean;
-}
+import { CampaignActionsProps } from '@/types/index';
 
 const CampaignActions: React.FC<CampaignActionsProps> = ({
   isEditing,
@@ -26,7 +18,7 @@ const CampaignActions: React.FC<CampaignActionsProps> = ({
     <TableCell align="center">
       {isEditing ? (
         <>
-          <IconButton color="primary" onClick={onSave} disabled={disableSave}>
+          <IconButton color="primary" onClick={onSave} disabled={disableSave} data-testid="save-button">
             <CheckIcon />
           </IconButton>
           <IconButton color="secondary" onClick={onCancel}>

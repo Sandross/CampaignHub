@@ -44,3 +44,12 @@ export interface Campaign {
     title: string;
     message: string;
   }
+
+  export interface CampaignActionsProps {
+    isEditing: boolean;
+    onSave: () => void;
+    onCancel: () => void;
+    onEdit: () => void;
+    onDelete: () => void;
+    disableSave: boolean;
+  }
